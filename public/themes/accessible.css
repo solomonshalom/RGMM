@@ -1,0 +1,99 @@
+/* Windows 11 Theme */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f3f3f3;
+  font-size: 0.7rem;
+}
+
+.window {
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.title-bar {
+  background-color: #f3f3f3;
+  color: #000000;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.75rem;
+}
+
+button {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #ffffff;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+input {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #ffffff;
+  border: 1px solid #d1d1d1;
+}
+
+textarea {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #ffffff;
+  border: 1px solid #d1d1d1;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+  height: 29.9px;
+}
+
+input[type="number"] {
+  /* need this 1 pixel to fit the spinner controls in box */
+  height: 30px;
+}
+
+/* Dropdown styles - removed icon and appearance */
+select {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #ffffff;
+  border: 1px solid #d1d1d1;
+  appearance: none; /* Remove default dropdown icon */
+  -webkit-appearance: none; /* Remove default dropdown icon for WebKit browsers */
+  -moz-appearance: none; /* Remove default dropdown icon for Firefox */
+  background: none;
+}
+
+button:hover {
+  background-color: #f3f3f3;
+}
+
+.mod-list {
+  border: 1px solid #d1d1d1;
+  background-color: #ffffff;
+}
+
+.category-header {
+  background-color: #f9f9f9;
+  color: #000000;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.7rem;
+}
+
+.mod-item {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.7rem;
+}
+
+.mod-item:hover {
+  background-color: #f0f0f0;
+}
+
+.markdown-content {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 1rem;
+  font-size: 0.7rem;
+}

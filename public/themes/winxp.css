@@ -1,0 +1,45 @@
+/* Windows XP Theme */
+body {
+  font-family: "Tahoma", Arial, sans-serif;
+  background-color: #235cda;
+  background-image: url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+.window {
+  border: 1px solid #0054e3;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.title-bar {
+  background: linear-gradient(180deg, #0058e6 0%, #3a93ff 3%, #288dff 6%, #127dff 10%, #036ffc 12%, #0262ee 15%, #0057e3 18%, #0054e3 94%, #00047d 100%);
+  color: white;
+  padding: 2px 5px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+button, input, select, textarea {
+  font-family: "Tahoma", Arial, sans-serif;
+  background: linear-gradient(180deg, #ffffff 0%, #f1f3f6 100%);
+  border: 1px solid #7f9db9;
+  border-radius: 3px;
+}
+
+button:hover {
+  background: linear-gradient(180deg, #f1f3f6 0%, #ffffff 100%);
+}
+
+.mod-list {
+  border: 1px solid #7f9db9;
+}
+
+.category-header {
+  background-color: #ebeadb;
+  color: #000000;
+  font-weight: bold;
+  border-bottom: 1px solid #aca899;
+}
