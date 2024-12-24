@@ -215,3 +215,42 @@ button {
 .category-header:hover::after {
   opacity: 1;
 }
+
+/* Add these new styles for the ModParser component */
+.mod-parser textarea {
+  width: 100%;
+  min-height: 150px;
+  margin-bottom: 16px;
+  font-family: monospace;
+}
+
+.parsed-output fieldset {
+  margin-bottom: 12px;
+}
+
+.output-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+.output-row span {
+  margin-right: 8px;
+}
+
+.copy-button {
+  min-width: auto;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}

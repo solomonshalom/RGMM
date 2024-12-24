@@ -35,4 +35,4 @@ The Game Mod Manager. This tool is all about empowering gamers to organize, crea
 
 ## Why This Matters
 
-At Facebook, we've always believed in the power of community. This Game Mod Manager is all about fostering creativity and sharing within gaming communities. By making it easier for modders to create, organize, and share their work, we're helping to build stronger, more engaged gaming ecosystems.
+At Facebook, we've always believed in the power of community. This Game Mod Manager is all about fostering creativity and sharing within gaming communities. By making it easier for modders to create, organize, and share their work, we're helping to build stronger, more engaged gaming ecosystems."# GMM" 
