@@ -19,3 +19,5 @@ const ParserStatus: React.FC<ParserStatusProps> = ({ isLoading, error }) => (
     )}
   </>
 );
+
+export default ParserStatus;

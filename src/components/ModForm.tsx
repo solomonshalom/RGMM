@@ -120,7 +120,7 @@ ${importedMod.description}
             Content: ${content}`,
           },
         ],
-        model: 'mixtral-8x7b-32768',
+        model: 'llama3-8b-8192',
       });
 
       const summary = completion.choices[0]?.message?.content;

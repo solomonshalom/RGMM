@@ -10,7 +10,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ isFullScreen, toggleFullScreen })
   return (
     <div className="title-bar">
       <div className="title-bar-text">
-        RGMM&nbsp;
+        PZM&nbsp;
         <a 
           href="https://linktr.ee/solomonlijo" 
           style={{ textDecoration: 'none', color: 'inherit' }}

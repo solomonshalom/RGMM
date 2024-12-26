@@ -11,15 +11,10 @@ interface SteamWorkshopImporterProps {
 
 const SteamWorkshopImporter: React.FC<SteamWorkshopImporterProps> = ({ onImport, onCancel }) => {
   const [url, setUrl] = useState('');
-  const [bulkUrls, setBulkUrls] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [currentProxyIndex, setCurrentProxyIndex] = useState(0);
-  const [importMode, setImportMode] = useState<'single' | 'bulk'>('single');
-  const [bulkImportMode, setBulkImportMode] = useState<'individual' | 'collection'>('individual');
-  const [progress, setProgress] = useState({ current: 0, total: 0 });
   const [useAI, setUseAI] = useState(false);
-  const [collectionName, setCollectionName] = useState('');
 
   const corsProxies = [
     {
@@ -130,7 +125,7 @@ const SteamWorkshopImporter: React.FC<SteamWorkshopImporterProps> = ({ onImport,
             content: `Summarize this mod information:\nTitle: ${modData.name}\nDescription: ${modData.description}`
           }
         ],
-        model: 'mixtral-8x7b-32768',
+        model: 'llama3-8b-8192',
       });
 
       const summary = completion.choices[0]?.message?.content;
@@ -230,60 +225,6 @@ const SteamWorkshopImporter: React.FC<SteamWorkshopImporterProps> = ({ onImport,
     }
   };
 
-  const handleBulkImport = async () => {
-    setIsLoading(true);
-    setError('');
-    
-    const urls = bulkUrls
-      .split('\n')
-      .map(url => url.trim())
-      .filter(url => url.length > 0);
-    
-    setProgress({ current: 0, total: urls.length });
-
-    const scrapedMods = [];
-    for (let i = 0; i < urls.length; i++) {
-      try {
-        const modData = await scrapeWorkshopData(urls[i]);
-        scrapedMods.push(modData);
-        setProgress({ current: i + 1, total: urls.length });
-        await new Promise(resolve => setTimeout(resolve, 1000));
-      } catch (err) {
-        console.error(`Failed to import ${urls[i]}:`, err);
-      }
-    }
-
-    if (bulkImportMode === 'individual') {
-      scrapedMods.forEach(mod => onImport(mod));
-    } else {
-      if (scrapedMods.length > 0) {
-        const collectionContent = scrapedMods.map((mod, index) => `
-## ${index + 1}. ${mod.name}
-
-${mod.description}
-
-- Author: ${mod.author}
-- [View on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=${mod.steamWorkshopId})
-${mod.thumbnailUrl ? `\n![${mod.name}](${mod.thumbnailUrl})` : ''}
-`).join('\n\n---\n\n');
-
-        const collectionMod = {
-          name: collectionName || 'Mod Collection',
-          description: `A collection of ${scrapedMods.length} Steam Workshop mods`,
-          content: `# ${collectionName || 'Mod Collection'}\n\n${collectionContent}`,
-          category: 'Steam Workshop',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        };
-
-        onImport(collectionMod);
-      }
-    }
-    
-    setIsLoading(false);
-    onCancel();
-  };
-
   const handleSingleImport = async () => {
     setIsLoading(true);
     setError('');
@@ -304,34 +245,13 @@ ${mod.thumbnailUrl ? `\n![${mod.name}](${mod.thumbnailUrl})` : ''}
   return (
     <div className="steam-workshop-importer">
       <div className="field-row">
-        <select value={importMode} onChange={(e) => setImportMode(e.target.value as 'single' | 'bulk')}>
-          <option value="single">Single Import</option>
-          <option value="bulk">Bulk Import</option>
-        </select>
+        <input
+          type="text"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          placeholder="Enter Steam Workshop URL or ID"
+        />
       </div>
-
-      {importMode === 'bulk' && (
-        <div className="field-row">
-          <select 
-            value={bulkImportMode} 
-            onChange={(e) => setBulkImportMode(e.target.value as 'individual' | 'collection')}
-          >
-            <option value="individual">Create Individual Mods</option>
-            <option value="collection">Create Single Collection</option>
-          </select>
-        </div>
-      )}
-
-      {importMode === 'bulk' && bulkImportMode === 'collection' && (
-        <div className="field-row">
-          <input
-            type="text"
-            value={collectionName}
-            onChange={(e) => setCollectionName(e.target.value)}
-            placeholder="Collection Name"
-          />
-        </div>
-      )}
 
       <div className="field-row">
         <label>
@@ -343,37 +263,11 @@ ${mod.thumbnailUrl ? `\n![${mod.name}](${mod.thumbnailUrl})` : ''}
         </label>
       </div>
 
-      {importMode === 'single' ? (
-        <div className="field-row">
-          <input
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            placeholder="Enter Steam Workshop URL or ID"
-          />
-        </div>
-      ) : (
-        <div className="field-row">
-          <textarea
-            value={bulkUrls}
-            onChange={(e) => setBulkUrls(e.target.value)}
-            placeholder="Enter multiple Steam Workshop URLs (one per line)"
-            rows={5}
-          />
-        </div>
-      )}
-
-      {isLoading && progress.total > 0 && (
-        <div className="progress-bar">
-          Importing: {progress.current}/{progress.total} mods
-        </div>
-      )}
-
       <div className="field-row">
         <button
           type="button"
-          onClick={importMode === 'single' ? handleSingleImport : handleBulkImport}
-          disabled={isLoading || (!url && !bulkUrls) || (bulkImportMode === 'collection' && !collectionName)}
+          onClick={handleSingleImport}
+          disabled={isLoading || !url}
         >
           {isLoading ? 'Importing...' : 'Import'}
         </button>

@@ -1,14 +1,23 @@
-export interface WorkshopConfig {
-  apiKey: string;
-  collections: string[];
-  exclusions: string[];
-}
-
-export interface WorkshopCollection {
-  [workshopId: string]: string[]; // Map of Workshop ID to array of Mod IDs
-}
-
-export interface ParseResult {
+export interface ParsedIds {
   workshopIds: string[];
   modIds: string[];
+  mapIds: string[];
+}
+
+export interface ParserResult {
+  workshopIds: string[];
+  modIds: string[];
+}
+
+export class ProxyError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'ProxyError';
+  }
+}
+
+export interface ScraperResult {
+  success: boolean;
+  data?: ParserResult;
+  error?: string;
 }

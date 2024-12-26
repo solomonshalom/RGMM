@@ -18,7 +18,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setCurrentView }) 
         Chat
       </button>
       <button onClick={() => setCurrentView('parser')} disabled={currentView === 'parser'}>
-        Parser
+        Scrappy
       </button>
     </div>
   );

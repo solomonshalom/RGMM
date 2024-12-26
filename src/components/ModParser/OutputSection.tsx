@@ -3,7 +3,7 @@ import { Copy, Check } from 'lucide-react';
 
 interface OutputSectionProps {
   title: string;
-  items: string[];
+  items?: string[];
   type: 'workshop' | 'mod' | 'map';
   copied: string | null;
   onCopy: (type: string, content: string) => void;
@@ -11,12 +11,12 @@ interface OutputSectionProps {
 
 const OutputSection: React.FC<OutputSectionProps> = ({
   title,
-  items,
+  items = [], // Provide default empty array
   type,
   copied,
   onCopy,
 }) => {
-  if (items.length === 0) return null;
+  if (!items?.length) return null;
 
   return (
     <fieldset>

@@ -70,7 +70,7 @@ const Chat: React.FC<ChatProps> = ({ mods, groups, onDelete, onEdit, onSave }) =
           ...messages,
           userMessage
         ],
-        model: 'mixtral-8x7b-32768',
+        model: 'llama3-8b-8192',
       });
 
       const assistantMessage = { role: 'assistant' as const, content: completion.choices[0]?.message?.content || 'Sorry, I couldn\'t process that request.' };

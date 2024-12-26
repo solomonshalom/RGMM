@@ -109,7 +109,7 @@ ${mod.thumbnailUrl ? `\n![${mod.name}](${mod.thumbnailUrl})` : ''}
       <div className="field-row">
         <select value={importMode} onChange={(e) => setImportMode(e.target.value as 'single' | 'bulk')}>
           <option value="single">Single Import</option>
-          <option value="bulk">Bulk Import</option>
+          <option value="bulk">Advanced Import</option>
         </select>
       </div>
 
